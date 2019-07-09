@@ -5,6 +5,8 @@ import './App.css'
 import { Container, Row, Col,
   Card, CardBody, CardTitle, CardText } from 'reactstrap'
 
+import validate from '../../logic/validation'
+
 const App = () =>
   <Container className="app-container">
     <Row>
@@ -14,7 +16,7 @@ const App = () =>
     </Row>
     <Row>
       <Col>
-        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+        <Dropzone onDrop={validate}>
           {({getRootProps, getInputProps}) => (
             <Card className="text-center py-3">
               <CardBody {...getRootProps()}>

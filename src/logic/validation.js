@@ -1,8 +1,8 @@
-import { getFile } from './util'
+import { getFile, detectPrefix } from './util'
 
-const description_present = files =>
+const description_present = (files, { prefix }) =>
   // A top-level file is called dataset_description.json
-  getFile('/dataset_description.json', files) !== undefined
+  getFile('/dataset_description.json', files, prefix) !== undefined
     ? undefined
     : {
         message: 'No dataset description found',
@@ -29,11 +29,17 @@ const checks = [
   filenames_ascii,
 ]
 
-const validate = (files) =>
+const validate = (files) => {
+  // Supply some metadata around the files
+  const options = {
+    prefix: detectPrefix(files)
+  }
+
   // Run all of the checks for all of the files,
   // then filter non-errors (undefined)
-  checks
-    .flatMap(check => check(files))
+  return checks
+    .flatMap(check => check(files, options))
     .filter(e => e !== undefined)
+}
 
 export default validate

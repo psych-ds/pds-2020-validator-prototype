@@ -1,4 +1,4 @@
-import { getFile, detectPrefix } from './util'
+import { getFile, detectPrefix, stripPrefix } from './util'
 
 const description_present = (files, { prefix }) =>
   // A top-level file is called dataset_description.json
@@ -10,7 +10,7 @@ const description_present = (files, { prefix }) =>
         severity: 'error',
       }
 
-const filenames_ascii = files =>
+const filenames_ascii = (files, { prefix }) =>
   // Check whether the file names are alphanumeric.
   // If the file path matches, everything is ok (return undefined),
   // otherwise return an error including further data
@@ -19,7 +19,7 @@ const filenames_ascii = files =>
       ? undefined
       : {
           message: 'Non-alphanumeric file path',
-          file: f.path,
+          file: stripPrefix(f.path, prefix),
           severity: 'error',
         }
   )

@@ -53,3 +53,8 @@ export const detectPrefix = (files) => {
     return ''
   }
 }
+
+export const stripPrefix = (path, prefix) =>
+  path.startsWith(prefix)
+    ? path.slice(prefix.length)
+    : path

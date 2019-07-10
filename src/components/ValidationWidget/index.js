@@ -64,9 +64,9 @@ const ValidationWidget = () => {
     >
       <CardHeader>
         <UploadWidget
-          onDrop={ files => {
+          onDrop={ async (files) => {
             // Run validation
-            const newErrors = validate(files)
+            const newErrors = await validate(files)
 
             // Update state
             // (TODO: At some point, there might need to be

@@ -29,17 +29,20 @@ const checks = [
   filenames_ascii,
 ]
 
-const validate = (files) => {
+const validate = async (files) => {
   // Supply some metadata around the files
   const options = {
     prefix: detectPrefix(files)
   }
 
-  // Run all of the checks for all of the files,
-  // then filter non-errors (undefined)
-  return checks
-    .flatMap(check => check(files, options))
-    .filter(e => e !== undefined)
+  // Run all of the checks for all of the files
+  // (this happens asyncronously)
+  const results = await Promise.all(
+    checks.flatMap(check => check(files, options))
+  )
+
+  // Filter non-errors (undefined)
+  return results.filter(e => e !== undefined)
 }
 
 export default validate

@@ -1,3 +1,15 @@
+import { getFile } from './util'
+
+const description_present = files =>
+  // A top-level file is called dataset_description.json
+  getFile('/dataset_description.json', files) !== undefined
+    ? undefined
+    : {
+        message: 'No dataset description found',
+        file: '/dataset_description.json',
+        severity: 'error',
+      }
+
 const filenames_ascii = files =>
   // Check whether the file names are alphanumeric.
   // If the file path matches, everything is ok (return undefined),
@@ -13,6 +25,7 @@ const filenames_ascii = files =>
   )
 
 const checks = [
+  description_present,
   filenames_ascii,
 ]
 

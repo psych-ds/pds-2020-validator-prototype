@@ -1,0 +1,5 @@
+.card > .card-header:last-child {
+  border-bottom: none;
+  border-radius: calc(.25rem - 1px);
+}
+

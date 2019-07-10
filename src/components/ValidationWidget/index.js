@@ -65,13 +65,13 @@ const ValidationWidget = () => {
       <CardHeader>
         <UploadWidget
           onDrop={ files => {
-            // Clear the list of errors
-            setErrors([])
-
             // Run validation
             const newErrors = validate(files)
 
             // Update state
+            // (TODO: At some point, there might need to be
+            // and intermediate state that is visible while
+            // the data are being processed)
             setActive(true)
             setErrors(newErrors)
           }}

@@ -20,18 +20,40 @@ const getIcon = (severity) => {
   }
 }
 
-const Error = ({ message, severity }) =>
+const Error = ({ message, severity, details=[] }) =>
   <li className="mb-2">
-    {message || 'Missing error message'}
-    <FontAwesomeIcon
-      icon={getIcon(severity)}
-      className="float-right"
-      style={{
-        position: 'relative',
-        top: '4px',
-        opacity: 0.25,
-      }}
-    />
+    <div>
+      {message || 'Missing error message'}
+      <FontAwesomeIcon
+        icon={getIcon(severity)}
+        className="float-right"
+        style={{
+          position: 'relative',
+          top: '4px',
+          opacity: 0.25,
+        }}
+      />
+    </div>
+    <div>
+      {
+        details.map((d, i) =>
+          <small key={`details-${i}`} className="d-block">
+            { /*
+              TODO: This is tightly coupled to the ajv output.
+              Error messages should be preprocessed into a
+              standardized format that is independent
+              of their origin.
+            */ }
+            {
+              d.dataPath === ''
+                ? 'The file '
+                : <><code>{ d.dataPath }</code>{' '}</>
+            }
+            { d.message }
+          </small>
+        )
+      }
+    </div>
   </li>
 
 const FileErrors = ({ file, errors }) =>

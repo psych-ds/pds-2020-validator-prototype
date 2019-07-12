@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Card, CardHeader, CardTitle, CardText } from 'reactstrap'
+import { Card, CardHeader, CardTitle, CardText, Collapse } from 'reactstrap'
 
 import UploadWidget from '../UploadWidget'
 import ErrorWidget from '../ErrorWidget'
@@ -83,7 +83,9 @@ const ValidationWidget = () => {
           />
         </UploadWidget>
       </CardHeader>
-      { errors.length > 0 && <ErrorWidget errors={errors} /> }
+      <Collapse isOpen={errors.length > 0}>
+        <ErrorWidget errors={errors} />
+      </Collapse>
     </Card>
   )
 }

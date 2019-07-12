@@ -2,4 +2,7 @@
   border-bottom: none;
   border-radius: calc(.25rem - 1px);
 }
-
+.card .list-group li.list-group-item:last-child {
+  border-bottom-left-radius: calc(.25rem - 1px);
+  border-bottom-right-radius: calc(.25rem - 1px);
+}

@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
-import { Card, CardHeader, CardTitle, CardText, Collapse } from 'reactstrap'
+import { Card, CardHeader, CardTitle, CardText,
+  Button, Collapse } from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRedo } from '@fortawesome/free-solid-svg-icons'
 
 import UploadWidget from '../UploadWidget'
 import ErrorWidget from '../ErrorWidget'
@@ -19,10 +22,30 @@ const getColor = (errors, active) => {
   }
 }
 
-const HeaderContent = ({errors, active}) => {
+const ReloadButton = ({onClick, color='dark'}) =>
+  <Button
+    outline color={color}
+    size="sm"
+    style={{
+      zIndex: 5,
+      position: 'absolute',
+      right: 0,
+    }}
+    onClick={e => {
+      e.stopPropagation()
+      onClick(e)
+    }}
+  >
+    <FontAwesomeIcon
+      fixedWidth icon={faRedo}
+    />
+  </Button>
+
+const HeaderContent = ({errors, active, onReset}) => {
   if (errors.length > 0) {
     return <>
-      <CardTitle className="h4">
+      <CardTitle className="h4" style={{position: 'relative'}}>
+        <ReloadButton onClick={onReset} />
         Not quite there yet!
       </CardTitle>
       <CardText>
@@ -31,7 +54,8 @@ const HeaderContent = ({errors, active}) => {
     </>
   } else if (errors.length === 0 && active) {
     return <>
-      <CardTitle className="h4">
+      <CardTitle className="h4" style={{position: 'relative'}}>
+        <ReloadButton color="light" onClick={onReset} />
         Looks great!
       </CardTitle>
       <CardText>
@@ -80,6 +104,10 @@ const ValidationWidget = () => {
           <HeaderContent
             errors={errors}
             active={active}
+            onReset={() => {
+              setActive(false)
+              setErrors([])
+            }}
           />
         </UploadWidget>
       </CardHeader>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Card, CardHeader, CardTitle, CardText,
+import { Card, CardHeader, CardBody, CardTitle, CardText,
   Button, Collapse } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo } from '@fortawesome/free-solid-svg-icons'
@@ -22,15 +22,10 @@ const getColor = (errors, active) => {
   }
 }
 
-const ReloadButton = ({onClick, color='dark'}) =>
+const ReloadButton = ({onClick}) =>
   <Button
-    outline color={color}
-    size="sm"
-    style={{
-      zIndex: 5,
-      position: 'absolute',
-      right: 0,
-    }}
+    outline color="secondary" size="sm"
+    style={{ fontWeight: 600 }}
     onClick={e => {
       e.stopPropagation()
       onClick(e)
@@ -38,14 +33,29 @@ const ReloadButton = ({onClick, color='dark'}) =>
   >
     <FontAwesomeIcon
       fixedWidth icon={faRedo}
-    />
+    />{' '}
+    Start over
   </Button>
 
-const HeaderContent = ({errors, active, onReset}) => {
+const Toolbar = ({errors, onReload}) =>
+  <CardBody
+    className="d-flex justify-content-between bg-light border-b"
+  >
+    <div className="pt-1">
+      <strong>
+        {errors.length}
+        {errors.length > 1 ? ' issues' : ' issue'}
+      </strong> found
+    </div>
+    <ReloadButton
+      onClick={onReload}
+    />
+  </CardBody>
+
+const HeaderContent = ({errors, active}) => {
   if (errors.length > 0) {
     return <>
-      <CardTitle className="h4" style={{position: 'relative'}}>
-        <ReloadButton onClick={onReset} />
+      <CardTitle className="h4">
         Not quite there yet!
       </CardTitle>
       <CardText>
@@ -54,8 +64,7 @@ const HeaderContent = ({errors, active, onReset}) => {
     </>
   } else if (errors.length === 0 && active) {
     return <>
-      <CardTitle className="h4" style={{position: 'relative'}}>
-        <ReloadButton color="light" onClick={onReset} />
+      <CardTitle className="h4">
         Looks great!
       </CardTitle>
       <CardText>
@@ -112,6 +121,13 @@ const ValidationWidget = () => {
         </UploadWidget>
       </CardHeader>
       <Collapse isOpen={errors.length > 0}>
+        <Toolbar
+          errors={errors}
+          onReload={() => {
+            setActive(false)
+            setErrors([])
+          }}
+        />
         <ErrorWidget errors={errors} />
       </Collapse>
     </Card>

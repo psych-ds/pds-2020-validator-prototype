@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Psych-DS validator",
+  "name": "Validator for the Psych-DS standard",
   "icons": [
     {
       "src": "favicon.ico",

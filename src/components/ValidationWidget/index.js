@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { Card, CardHeader, CardBody, CardTitle, CardText,
   Button, Collapse } from 'reactstrap'
+import classNames from 'classnames'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo } from '@fortawesome/free-solid-svg-icons'
 
@@ -95,7 +96,18 @@ const ValidationWidget = () => {
       color={color}
       inverse={['primary', 'success'].includes(color)}
     >
-      <CardHeader>
+      <CardHeader
+        className={classNames({
+          // Remove bottom border if the issue list isn't visible
+          // (this isn't easy in raw CSS, because the collapsible
+          // element below is always present, therefore the
+          // :last-child pseudo-class doesn't apply. At some point,
+          // :has() will make this possible, but browser support
+          // is still way out.)
+          'border-bottom-0': errors.length === 0,
+          'rounded-bottom': errors.length === 0,
+        })}
+      >
         <UploadWidget
           onDrop={ async (files) => {
             // Run validation

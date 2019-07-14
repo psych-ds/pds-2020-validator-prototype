@@ -8,7 +8,7 @@ const UploadWidget = ({ onDrop, children, className }) =>
     {({getRootProps, getInputProps}) => (
       <div {...getRootProps()}>
         <div className={className}>
-          <input {...getInputProps()} />
+          <input {...getInputProps({ webkitdirectory: 'true' })} />
           { children }
         </div>
       </div>

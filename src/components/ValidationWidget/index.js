@@ -38,14 +38,19 @@ const ReloadButton = ({onClick}) =>
     Start over
   </Button>
 
-const Toolbar = ({errors, onReload}) =>
+const Toolbar = ({errors=[], onReload}) =>
   <CardBody
-    className="d-flex justify-content-between bg-light border-b"
+    className={classNames(
+      "d-flex justify-content-between bg-light text-dark border-b",
+      // Round bottom corners if the toolbar is the last
+      // component within the card
+      {'rounded-bottom': errors.length === 0}
+    )}
   >
     <div className="pt-1">
       <strong>
         {errors.length}
-        {errors.length > 1 ? ' issues' : ' issue'}
+        {errors.length === 1 ? ' issue' : ' issues'}
       </strong> found
     </div>
     <ReloadButton
@@ -104,8 +109,8 @@ const ValidationWidget = () => {
           // :last-child pseudo-class doesn't apply. At some point,
           // :has() will make this possible, but browser support
           // is still way out.)
-          'border-bottom-0': errors.length === 0,
-          'rounded-bottom': errors.length === 0,
+          'border-bottom-0': !active,
+          'rounded-bottom': !active,
         })}
       >
         <UploadWidget
@@ -117,22 +122,18 @@ const ValidationWidget = () => {
             // (TODO: At some point, there might need to be
             // and intermediate state that is visible while
             // the data are being processed)
-            setActive(true)
             setErrors(newErrors)
+            setActive(true)
           }}
           className="text-center py-3"
         >
           <HeaderContent
             errors={errors}
             active={active}
-            onReset={() => {
-              setActive(false)
-              setErrors([])
-            }}
           />
         </UploadWidget>
       </CardHeader>
-      <Collapse isOpen={errors.length > 0}>
+      <Collapse isOpen={active}>
         <Toolbar
           errors={errors}
           onReload={() => {

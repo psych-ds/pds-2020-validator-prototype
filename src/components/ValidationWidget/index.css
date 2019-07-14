@@ -1,7 +1,8 @@
 .card {
   transition: background-color 0.25s, border-color 0.25s;
 }
+.card .card-body.rounded-bottom,
 .card .list-group li.list-group-item:last-child {
-  border-bottom-left-radius: calc(.25rem - 1px);
-  border-bottom-right-radius: calc(.25rem - 1px);
+  border-bottom-left-radius: calc(.25rem - 1px) !important;
+  border-bottom-right-radius: calc(.25rem - 1px) !important;
 }

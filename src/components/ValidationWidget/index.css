@@ -1,5 +1,5 @@
 .card {
-  transition: background-color 0.25s, border-color 0.25s;
+  transition: color 0.25s, background-color 0.25s, border-color 0.25s;
 }
 .card .card-body.rounded-bottom,
 .card .list-group li.list-group-item:last-child {

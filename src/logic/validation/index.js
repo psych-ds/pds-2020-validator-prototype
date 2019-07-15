@@ -55,7 +55,7 @@ const description_matches_specification = async (files, { prefix }) => {
   }
 }
 
-const filenames_ascii = (files, { prefix }) =>
+const filenames_alphanumeric = (files, { prefix }) =>
   // Check whether the file names are alphanumeric.
   // If the file path matches, everything is ok (return undefined),
   // otherwise return an error including further data
@@ -72,7 +72,7 @@ const filenames_ascii = (files, { prefix }) =>
 const checks = [
   description_present,
   description_matches_specification,
-  filenames_ascii,
+  filenames_alphanumeric,
 ]
 
 const validate = async (files) => {

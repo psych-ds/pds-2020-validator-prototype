@@ -18,7 +18,7 @@ it('detects common file prefixes (without leading slash)', () => {
   expect(detectPrefix(files)).toEqual('/foo')
 })
 
-it('detects if there is no common path prefixes', () => {
+it('detects if there are no common path prefixes', () => {
   const files = [
     { path: 'bar.xyz '},
     { path: 'foo/baz.xyz '},

@@ -1,6 +1,7 @@
 import Ajv from 'ajv'
 
-import { getFile, detectPrefix, stripPrefix } from '../util'
+import { getFile } from '../util/fs'
+import { detectPrefix, stripPrefix } from '../util/prefix'
 import { description as descriptionSchema } from './schema'
 
 const description_present = (files, { prefix }) =>

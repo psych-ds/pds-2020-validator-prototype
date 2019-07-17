@@ -83,9 +83,9 @@ const validate = async (files) => {
 
   // Run all of the checks for all of the files
   // (this happens asyncronously)
-  const results = await Promise.all(
-    checks.flatMap(check => check(files, options))
-  )
+  const results = (await Promise.all(
+    checks.map(check => check(files, options))
+  )).flat()
 
   // Filter non-errors (undefined)
   return results.filter(e => e !== undefined)

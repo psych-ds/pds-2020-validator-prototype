@@ -1,6 +1,3 @@
-
-import { detectPrefix } from '../util/prefix'
-
 import {
   description_present,
   description_matches_specification
@@ -15,12 +12,7 @@ const checks = [
   filenames_alphanumeric,
 ]
 
-const validate = async (files) => {
-  // Supply some metadata around the files
-  const options = {
-    prefix: detectPrefix(files)
-  }
-
+const validate = async (files, options={}) => {
   // Run all of the checks for all of the files
   // (this happens asyncronously)
   const results = (await Promise.all(

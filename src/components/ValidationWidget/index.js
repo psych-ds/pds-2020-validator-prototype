@@ -9,7 +9,7 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons'
 import UploadWidget from '../UploadWidget'
 import ErrorWidget from '../ErrorWidget'
 
-import validate from '../../logic/validation'
+import validate from '../../logic'
 
 import './index.css'
 

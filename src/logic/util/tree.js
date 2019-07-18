@@ -1,4 +1,7 @@
-import {trimLeadingSlash} from './fs'
+const trimLeadingSlash = path =>
+  path.startsWith('/')
+    ? path.slice(1)
+    : path
 
 // A very naive tree implementation
 // (dear kind CS folks, please have mercy on me,

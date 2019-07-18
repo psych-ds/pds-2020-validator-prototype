@@ -9,7 +9,14 @@ import { detectPrefix, stripPrefix } from './util/prefix'
 import validateCore from './validation'
 
 const preprocess = (files) => {
-  const prefix = detectPrefix(files)
+  // Detect a common prefix from the set of files
+  // (we also remove the leading slash from top-level files)
+  const prefix = detectPrefix(files) + '/'
+
+  // Create a hash of path/file pairs, removing the
+  // prefix from every path. Top-level files should
+  // now be available at 'filename.ext' (rather than
+  // '/filename.ext' or '/only_dir/filename.ext')
   return Object.fromEntries(
     files.map(f => [stripPrefix(f.path, prefix), f])
   )

@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /validator-*/node_modules
+/validator-*/build
 /.pnp
 .pnp.js
 

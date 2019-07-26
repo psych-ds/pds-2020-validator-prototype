@@ -1,4 +1,4 @@
 {
   "private": true,
-  "workspaces": ["validator-core", "validator-electron", "validator-web"]
+  "workspaces": ["validator-core", "validator-node", "validator-web"]
 }

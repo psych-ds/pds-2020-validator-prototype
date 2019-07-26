@@ -1,0 +1,9 @@
+{
+  "name": "validator-node",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "dependencies": {
+    "glob": "^7.1.4",
+    "validator-core": "file:../validator-core"
+  }
+}

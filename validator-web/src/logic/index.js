@@ -6,7 +6,7 @@
 // and file objects as values.
 
 import { detectPrefix, stripPrefix } from './util/prefix'
-import validateCore from './validation'
+import validateCore from 'validator-core'
 
 const preprocess = (files) => {
   // Detect a common prefix from the set of files

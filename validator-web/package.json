@@ -15,7 +15,8 @@
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.1.5",
     "react-scripts": "^3.0.1",
-    "reactstrap": "^8.0.0"
+    "reactstrap": "^8.0.0",
+    "validator-core": "file:../validator-core"
   },
   "scripts": {
     "start": "react-scripts start",

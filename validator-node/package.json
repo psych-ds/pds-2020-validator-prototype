@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "main": "src/index.js",
   "dependencies": {
+    "esm": "^3.2.25",
     "glob": "^7.1.4",
+    "lodash": "^4.17.15",
     "validator-core": "file:../validator-core"
   }
 }

@@ -27,3 +27,6 @@ yarn-error.log*
 # R files
 .Rproj.user
 .Rhistory
+
+# JS dependencies that are copied in
+/validator-r/inst/atob.js

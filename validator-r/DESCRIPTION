@@ -15,3 +15,7 @@ Description: This package checks whether a data directory and the metadata there
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Depends:
+    R (>= 3.5.0),
+Imports:
+    V8,

@@ -8,12 +8,5 @@
     "glob": "^7.1.4",
     "lodash": "^4.17.15",
     "validator-core": "file:../validator-core"
-  },
-  "devDependencies": {
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6"
-  },
-  "scripts": {
-    "build": "webpack"
   }
 }

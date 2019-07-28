@@ -2,5 +2,12 @@
   "name": "validator-core",
   "version": "0.1.0",
   "main": "src/index.js",
-  "repository": "https://github.com/psych-ds/validator"
+  "repository": "https://github.com/psych-ds/validator",
+  "devDependencies": {
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
+  },
+  "scripts": {
+    "build": "webpack"
+  }
 }

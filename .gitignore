@@ -30,3 +30,4 @@ yarn-error.log*
 
 # JS dependencies that are copied in
 /validator-r/inst/atob.js
+/validator-r/inst/psychds-validator.js

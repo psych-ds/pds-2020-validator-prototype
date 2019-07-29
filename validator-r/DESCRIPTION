@@ -20,3 +20,4 @@ Depends:
 Imports:
     V8,
     purrr,
+    readr,

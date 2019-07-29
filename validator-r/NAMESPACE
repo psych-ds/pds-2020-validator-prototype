@@ -1,1 +1,3 @@
-exportPattern("^[[:alpha:]]+")
+exportPattern('^[[:alpha:]]+')
+importFrom(magrittr, '%>%')
+importFrom(crayon, '%+%')

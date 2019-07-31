@@ -50,8 +50,10 @@
 
   ctx$eval('
     let result
+    let error = ""
     psychds.default(input)
       .then((r) => { result = r })
+      .catch((e) => { error = e.message })
   ')
   # TODO: It's not entirely clear whether the promise will resolve
   # in time for the transfer back into R to happen, especially for
@@ -66,9 +68,14 @@
 
   # Transfer results back into R
   result <- ctx$get('result')
+  error <- ctx$get('error')
 
   # Close V8 context
   ctx$reset()
+
+  if (error != '') {
+    stop('Encountered error during validation: ', error)
+  }
 
   return(result)
 }

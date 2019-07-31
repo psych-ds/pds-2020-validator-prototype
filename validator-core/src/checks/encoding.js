@@ -11,7 +11,11 @@ const fileToRawString = async (file) => {
   const data = new Uint8Array(buffer)
 
   // Convert data array to string
-  return String.fromCharCode.apply(null, data)
+  let string = ''
+  for (let i = 0; i < data.length; i++) {
+    string += String.fromCharCode(data[i])
+  }
+  return string
 }
 
 export const encoding_utf8 = (files) =>

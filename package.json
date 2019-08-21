@@ -1,4 +1,16 @@
 {
   "private": true,
-  "workspaces": ["validator-core", "validator-node", "validator-web"]
+  "workspaces": [
+    "validator-core",
+    "validator-node",
+    "validator-web"
+  ],
+  "scripts": {
+    "build:core": "cd validator-core && yarn build",
+    "build:web": "cd validator-web && yarn build",
+    "build:r": "shx cp validator-core/build/psychds-validator.js validator-r/inst && cd validator-r"
+  },
+  "dependencies": {
+    "shx": "^0.3.2"
+  }
 }

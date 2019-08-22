@@ -9,5 +9,8 @@
   },
   "scripts": {
     "build": "webpack"
+  },
+  "dependencies": {
+    "papaparse": "^5.0.2"
   }
 }

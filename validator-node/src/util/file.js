@@ -41,7 +41,7 @@ class File {
 // Scan a directory, returning an object that has the local path
 // as the key, and a File object (see above) as the value
 export const scanDirectory = async (dir) => {
-  const result = await glob('**/*', { cwd: dir })
+  const result = await glob('**/*', { cwd: dir, nodir: true })
   const files = result.map(path => [path, new File(path, dir)])
   return fromPairs(files)
 }

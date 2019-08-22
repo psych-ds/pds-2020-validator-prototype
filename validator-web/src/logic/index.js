@@ -7,6 +7,9 @@
 
 import { detectPrefix, stripPrefix } from './util/prefix'
 import validateCore from 'validator-core'
+import objectFromEntries from 'core-js-pure/features/object/from-entries'
+// import "core-js/modules/es.object.from-entries";
+// import {fromPairs} from 'lodash'
 
 const preprocess = (files) => {
   // Detect a common prefix from the set of files
@@ -17,7 +20,7 @@ const preprocess = (files) => {
   // prefix from every path. Top-level files should
   // now be available at 'filename.ext' (rather than
   // '/filename.ext' or '/only_dir/filename.ext')
-  return Object.fromEntries(
+  return objectFromEntries(
     files.map(f => [stripPrefix(f.path, prefix), f])
   )
 }

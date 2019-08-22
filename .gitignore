@@ -35,3 +35,6 @@ yarn-error.log*
 # R build files
 psychds_*.tar.gz
 psychds.Rcheck/
+
+# Tags from vim developement
+tags

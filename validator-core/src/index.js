@@ -4,6 +4,7 @@ import {
 } from './checks/description'
 import { encoding_utf8 } from './checks/encoding'
 import { filenames_alphanumeric } from './checks/filenames'
+import arrayFlat from 'core-js-pure/features/array/flat'
 
 const checks = [
   description_present,
@@ -15,9 +16,9 @@ const checks = [
 const validate = async (files, options={}) => {
   // Run all of the checks for all of the files
   // (this happens asyncronously)
-  const results = (await Promise.all(
+  const results = arrayFlat(await Promise.all(
     checks.map(check => check(files, options))
-  )).flat()
+  ))
 
   // Filter non-errors (undefined)
   return results.filter(e => e !== undefined)

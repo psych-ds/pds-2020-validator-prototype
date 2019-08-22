@@ -1,0 +1,13 @@
+This iß nöt a ÜTF-8 ëncöded file
+
+Test content via http://www.columbia.edu/~fdc/utf8/:
+From the Tagelied of Wolfram von Eschenbach (Middle High German):
+
+  Sîne klâwen durh die wolken sint geslagen,
+  er stîget ûf mit grôzer kraft,
+  ich sih in grâwen tägelîch als er wil tagen,
+  den tac, der im geselleschaft
+  erwenden wil, dem werden man,
+  den ich mit sorgen în verliez.
+  ich bringe in hinnen, ob ich kan.
+  sîn vil manegiu tugent michz leisten hiez.

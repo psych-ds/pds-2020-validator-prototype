@@ -1,0 +1,37 @@
+{
+  "description": 1337,
+  "license": 123,
+  "author": "Felix",
+  "creator": [
+    { "firstName": "Felix" }
+  ],
+  "citation": [
+    "Cite me maybe?"
+  ],
+  "privacyPolicy": "Haha no",
+  "funder": "bolts and lightning, very very frightening me",
+  "url": [
+    "https://xkcd.com/974/",
+    "Whatever"
+  ],
+  "sameAs": "sameAs",
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": 1
+    },
+    {
+      "@type": "RandomValue",
+      "name": ["can't", "decide"]
+    },
+    {
+      "type": "Doubly wrong",
+      "name": "Right for once",
+      "privacy": "u serius?",
+      "propertyID": "That paper way back when"
+    }
+  ],
+  "temporalCoverage": "for ever (and ever)",
+  "datePublished": "yesterday",
+  "dateCreated": 2019
+}

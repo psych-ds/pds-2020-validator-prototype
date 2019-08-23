@@ -38,3 +38,4 @@ psychds.Rcheck/
 
 # Tags from vim developement
 tags
+.~lock*

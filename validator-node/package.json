@@ -7,6 +7,6 @@
     "esm": "^3.2.25",
     "glob": "^7.1.4",
     "lodash": "^4.17.15",
-    "validator-core": "file:../validator-core"
+    "validator-core": "*"
   }
 }

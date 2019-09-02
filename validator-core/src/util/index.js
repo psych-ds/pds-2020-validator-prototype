@@ -1,5 +1,6 @@
 import { pickBy } from 'lodash'
 import minimatch from 'minimatch'
+import flat from 'core-js-pure/features/array/flat'
 
 export const pickFiles = (files, glob) =>
   pickBy(files, (_, path) => minimatch(path, glob))
@@ -24,3 +25,14 @@ export const makeCheck = (fn, { glob='**/*.*', mode='global' }) =>
     }
     // TODO: Handle errors in tests
   }
+
+export const aggregateChecks = async (checks, files, options={}) => {
+  // Run all of the checks for all of the files
+  // (this happens asyncronously)
+  const results = await Promise.all(
+    checks.map(check => check(files, options))
+  )
+
+  // Flatten and filter non-errors (undefined)
+  return flat(results).filter(e => e !== undefined)
+}

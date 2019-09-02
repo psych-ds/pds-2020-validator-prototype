@@ -3,7 +3,7 @@ import {
   description_matches_specification
 } from './checks/description'
 import { encoding_utf8 } from './checks/encoding'
-import { file_content } from './checks/content'
+import { file_content } from './checks/data'
 import { filenames_alphanumeric } from './checks/filenames'
 import arrayFlat from 'core-js-pure/features/array/flat'
 

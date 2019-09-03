@@ -35,7 +35,7 @@
 # Validate the contents of a directory according to the PsychDS standard
 .validate <- function(directory) {
   # Setup V8 context
-  ctx <- .prepareCtx(.env$ctx)
+  ctx <- .prepareCtx(V8::v8())
 
   # Generate pairs of directory-relative and absolute paths
   # for all files in the directory

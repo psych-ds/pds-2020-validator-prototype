@@ -8,7 +8,10 @@
   "scripts": {
     "build:core": "cd validator-core && yarn build",
     "build:web": "cd validator-web && yarn build",
-    "build:r": "shx cp validator-core/build/psychds-validator.js validator-r/inst && cd validator-r"
+    "setup:r": "shx cp validator-core/build/psychds-validator.js validator-r/inst",
+    "check:r": "yarn setup:r && R -q -e \"devtools::check('validator-r')\"",
+    "build:r": "yarn setup:r && R -q -e \"devtools::build('validator-r')\"",
+    "install:r": "yarn setup:r && R -q -e \"devtools::install('validator-r')\""
   },
   "dependencies": {
     "shx": "^0.3.2"

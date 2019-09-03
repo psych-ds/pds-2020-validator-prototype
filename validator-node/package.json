@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "main": "src/index.js",
   "module": "src/main.js",
+  "bin": {
+    "psychds": "./bin/psychds.js"
+  },
   "dependencies": {
+    "commander": "^3.0.1",
     "esm": "^3.2.25",
     "glob": "^7.1.4",
     "lodash": "^4.17.15",

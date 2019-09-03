@@ -40,7 +40,7 @@ warn <- crayon::make_style(rgb(0.5, 0.1, 0.0)) # Yellow doesn't come out well
       ) %+% ' ' %+%
       warn('There\'s a few things that we\'ll need you to fix.'),
       crayon::white(
-        nrow(issues), 'issues found in Psych-DS dataset'
+        nrow(issues), ifelse(nrow(issues) == 1, 'issue', 'issues'), 'found in Psych-DS dataset'
       )
     )
   }

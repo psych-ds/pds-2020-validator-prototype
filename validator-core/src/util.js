@@ -1,11 +1,14 @@
 import { pickBy } from 'lodash'
 import minimatch from 'minimatch'
 
+export const pickFiles = (files, glob) =>
+  pickBy(files, (_, path) => minimatch(path, glob))
+
 // Wrapper function to simplify file handling in the check functions
 export const makeCheck = (fn, { glob='**/*.*', mode='global' }) =>
   async (files, options) => {
     // Filter files according to the glob pattern
-    const filteredFiles = pickBy(files, (_, path) => minimatch(path, glob))
+    const filteredFiles = pickFiles(files, glob)
 
     // Apply filter to all files individually, or pass through all files
     if (mode === 'per_file') {

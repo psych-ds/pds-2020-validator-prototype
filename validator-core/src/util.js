@@ -6,9 +6,13 @@ export const pickFiles = (files, glob) =>
 
 // Wrapper function to simplify file handling in the check functions
 export const makeCheck = (fn, { glob='**/*.*', mode='global' }) =>
-  async (files, options, ...args) => {
+  async (files, opt, ...args) => {
     // Filter files according to the glob pattern
     const filteredFiles = pickFiles(files, glob)
+    const options = {
+      ...opt,
+      allFiles: files,
+    }
 
     // Apply filter to all files individually, or pass through all files
     if (mode === 'per_file') {

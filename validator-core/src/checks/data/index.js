@@ -1,37 +1,50 @@
-import { detect as detectEncoding } from 'jschardet'
 import Papa from 'papaparse'
+import flat from 'core-js-pure/features/array/flat'
 
-const fileToRawString = async (file) => {
-  // JS encodes files as UTF-8 automagically, making
-  // character set detection very hard. Herein, we
-  // circumvent the automatic file loading to create
-  // a raw string from the file contents.
+import { pickFiles } from '../../util'
 
-  // Load the raw data into an array
-  const buffer = await file.arrayBuffer()
-  const data = new Uint8Array(buffer)
+const check_file = async ([path, file]) => {
+  // Try to parse the beginning of the file
+  const parseAttempt = Papa.parse(await file.text(), {
+    preview: 100,
+    dynamicTyping: true
+  })
 
-  // Convert data array to string
-  let string = ''
-  for (let i = 0; i < data.length; i++) {
-    string += String.fromCharCode(data[i])
+  // TODO: Decide if there is any scenario in which PPP
+  // might throw an error, and wrap in try/catch if so.
+  if (parseAttempt.errors.length > 0) {
+    return {
+      message: `Parse error: Couldn't parse data file`,
+      file: path,
+      severity: 'error',
+      // TODO: Pass through details provided by papaparse
+    }
   }
-  return string
+
+  // Check delimiter
+  if (parseAttempt.meta.delimiter !== '\t') {
+    return {
+      message: 'Not a tab-separated file',
+      file: path,
+      severity: 'error',
+      details: [{
+        message:
+          `Column delimiter seems to be ‘${ parseAttempt.meta.delimiter }’`
+      }]
+    }
+  }
 }
 
-export const file_content = (files) => {
-  console.log(files)
-  Promise.all(Object.entries(files).map(
-    async ([path, file]) => {
+export const file_content = async (files) => {
+  const data_files = pickFiles(files, 'raw_data/**/*_data.tsv')
+  // Hand-filtering here because of premature optimization:
+  // We might want to do some additional work per-file, which
+  // we would not want to repeat. Then again, maybe that would
+  // be possibly by passing all files through the check wrapper.
+  // It's going to be worth revisiting the design here once
+  // the basic functionality is in place!
 
-        if (path.startsWith('raw_data') & path.endsWith('.tsv')) {
-            console.log(
-                Papa.parse(await file.text(), {
-                    preview: 2,
-                    dynamicTyping: true
-                })
-            )
-        }
-    }
-  ))
+  return flat(
+    await Promise.all(Object.entries(data_files).map(check_file))
+  )
 }

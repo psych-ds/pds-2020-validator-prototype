@@ -5,12 +5,12 @@ import { pickFiles } from '../../util'
 
 const check_file = async ([path, file]) => {
   // Try to parse the beginning of the file
+  // TODO: Use streaming if the file representation allows it
   const parseAttempt = Papa.parse(await file.text(), {
-    preview: 100,
-    dynamicTyping: true
+    preview: 100, // Only parse 100 lines for now
   })
 
-  // TODO: Decide if there is any scenario in which PPP
+  // TODO: Figure out if there is any scenario in which PPP
   // might throw an error, and wrap in try/catch if so.
   if (parseAttempt.errors.length > 0) {
     return {
@@ -30,7 +30,7 @@ const check_file = async ([path, file]) => {
       details: [{
         message:
           `Column delimiter seems to be ‘${ parseAttempt.meta.delimiter }’`
-      }]
+      }],
     }
   }
 }

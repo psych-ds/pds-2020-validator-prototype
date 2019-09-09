@@ -22,4 +22,5 @@ export const makeCheck = (fn, { glob='**/*.*', mode='global' }) =>
     } else {
       return await fn(filteredFiles, options, ...args)
     }
+    // TODO: Handle errors in tests
   }

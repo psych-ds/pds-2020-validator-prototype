@@ -4,7 +4,7 @@ import { Card, CardHeader, CardBody, CardTitle, CardText,
   Button, Collapse } from 'reactstrap'
 import classNames from 'classnames'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faRedo, faSun } from '@fortawesome/free-solid-svg-icons'
 
 import UploadWidget from '../UploadWidget'
 import ErrorWidget from '../ErrorWidget'
@@ -58,8 +58,16 @@ const Toolbar = ({errors=[], onReload}) =>
     />
   </CardBody>
 
-const HeaderContent = ({errors, active}) => {
-  if (errors.length > 0) {
+const HeaderContent = ({errors, busy, active}) => {
+  if (busy) {
+    return <FontAwesomeIcon fixedWidth
+      icon={faSun} size="4x" spin
+      style={{
+        color: 'white',
+        opacity: 0.5,
+      }}
+    />
+  } else if (errors.length > 0) {
     return <>
       <CardTitle className="h4">
         Not quite there yet!
@@ -93,6 +101,7 @@ const HeaderContent = ({errors, active}) => {
 const ValidationWidget = () => {
   const [errors, setErrors] = useState([])
   const [active, setActive] = useState(false)
+  const [busy, setBusy] = useState(false)
 
   const color = getColor(errors, active)
 
@@ -115,6 +124,8 @@ const ValidationWidget = () => {
       >
         <UploadWidget
           onDrop={ async (files) => {
+            setBusy(true)
+
             // Run validation
             const newErrors = await validate(files)
 
@@ -124,11 +135,13 @@ const ValidationWidget = () => {
             // the data are being processed)
             setErrors(newErrors)
             setActive(true)
+            setBusy(false)
           }}
           className="text-center py-3"
         >
           <HeaderContent
             errors={errors}
+            busy={busy}
             active={active}
           />
         </UploadWidget>

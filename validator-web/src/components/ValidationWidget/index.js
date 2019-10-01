@@ -91,8 +91,7 @@ const HeaderContent = ({issues, busy, active}) => {
         Start validation
       </CardTitle>
       <CardText>
-        Please drag and drop your Psych-DS folder here,
-        or click to select it
+        Please drag and drop your Psych-DS folder here
       </CardText>
     </>
   }

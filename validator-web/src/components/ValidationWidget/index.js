@@ -38,19 +38,19 @@ const ReloadButton = ({onClick}) =>
     Start over
   </Button>
 
-const Toolbar = ({errors=[], onReload}) =>
+const Toolbar = ({issues=[], onReload}) =>
   <CardBody
     className={classNames(
       "d-flex justify-content-between bg-light text-dark border-b",
       // Round bottom corners if the toolbar is the last
       // component within the card
-      {'rounded-bottom': errors.length === 0}
+      {'rounded-bottom': issues.length === 0}
     )}
   >
     <div className="pt-1">
       <strong>
-        {errors.length}
-        {errors.length === 1 ? ' issue' : ' issues'}
+        {issues.length}
+        {issues.length === 1 ? ' issue' : ' issues'}
       </strong> found
     </div>
     <ReloadButton
@@ -58,7 +58,7 @@ const Toolbar = ({errors=[], onReload}) =>
     />
   </CardBody>
 
-const HeaderContent = ({errors, busy, active}) => {
+const HeaderContent = ({issues, busy, active}) => {
   if (busy) {
     return <FontAwesomeIcon fixedWidth
       icon={faSun} size="4x" spin
@@ -67,7 +67,7 @@ const HeaderContent = ({errors, busy, active}) => {
         opacity: 0.5,
       }}
     />
-  } else if (errors.length > 0) {
+  } else if (issues.length > 0) {
     return <>
       <CardTitle className="h4">
         Not quite there yet!
@@ -76,7 +76,7 @@ const HeaderContent = ({errors, busy, active}) => {
         There's a few things that we'll need you to fix.
       </CardText>
     </>
-  } else if (errors.length === 0 && active) {
+  } else if (issues.length === 0 && active) {
     return <>
       <CardTitle className="h4">
         Looks great!
@@ -99,11 +99,11 @@ const HeaderContent = ({errors, busy, active}) => {
 }
 
 const ValidationWidget = () => {
-  const [errors, setErrors] = useState([])
+  const [issues, setIssues] = useState([])
   const [active, setActive] = useState(false)
   const [busy, setBusy] = useState(false)
 
-  const color = getColor(errors, active)
+  const color = getColor(issues, active)
 
   return (
     <Card
@@ -127,20 +127,20 @@ const ValidationWidget = () => {
             setBusy(true)
 
             // Run validation
-            const newErrors = await validate(files)
+            const newIssues = await validate(files)
 
             // Update state
             // (TODO: At some point, there might need to be
             // and intermediate state that is visible while
             // the data are being processed)
-            setErrors(newErrors)
+            setIssues(newIssues)
             setActive(true)
             setBusy(false)
           }}
           className="text-center py-3"
         >
           <HeaderContent
-            errors={errors}
+            issues={issues}
             busy={busy}
             active={active}
           />
@@ -148,13 +148,13 @@ const ValidationWidget = () => {
       </CardHeader>
       <Collapse isOpen={active}>
         <Toolbar
-          errors={errors}
+          issues={issues}
           onReload={() => {
             setActive(false)
-            setErrors([])
+            setIssues([])
           }}
         />
-        <ErrorWidget errors={errors} />
+        <ErrorWidget issues={issues} />
       </Collapse>
     </Card>
   )

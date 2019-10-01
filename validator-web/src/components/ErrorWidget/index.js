@@ -56,7 +56,7 @@ const Error = ({ message, severity, details=[] }) =>
     </div>
   </li>
 
-const FileErrors = ({ file, errors }) =>
+const FileIssues = ({ file, issues }) =>
   <ListGroupItem>
     <Row>
       <Col md="4">
@@ -67,7 +67,7 @@ const FileErrors = ({ file, errors }) =>
       <Col>
         <ul className="list-unstyled error-list">
         {
-          errors.map(
+          issues.map(
             (e, i) => <Error key={`file-error-${file}-${i}`} {...e} />
           )
         }
@@ -76,18 +76,18 @@ const FileErrors = ({ file, errors }) =>
     </Row>
   </ListGroupItem>
 
-const ErrorWidget = ({ errors }) => {
-  const groupedErrors = groupBy(errors, e => e.file)
+const ErrorWidget = ({ issues }) => {
+  const groupedIssues = groupBy(issues, e => e.file)
 
   return (
     <ListGroup flush>
       {
-        Object.entries(groupedErrors)
-          .map(([file, errors], i) =>
-            <FileErrors
+        Object.entries(groupedIssues)
+          .map(([file, issues], i) =>
+            <FileIssues
               key={`error-${ i }`}
               file={file}
-              errors={errors}
+              issues={issues}
             />
           )
       }

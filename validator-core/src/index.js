@@ -1,4 +1,4 @@
-import { aggregateChecks } from './util'
+import flat from 'core-js-pure/features/array/flat'
 
 import {
   description_present,
@@ -16,7 +16,15 @@ const checks = [
   file_content
 ]
 
-const validate = async (files, options) =>
-  await aggregateChecks(checks, files, options)
+const validate = async (files, options) => {
+  // Run all of the checks for all of the files
+  // (this happens asyncronously)
+  const results = await Promise.all(
+    checks.map(check => check(files, options))
+  )
+
+  // Flatten and filter non-errors (undefined)
+  return flat(results).filter(e => e !== undefined)
+}
 
 export default validate

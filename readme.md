@@ -14,11 +14,11 @@
 
 ##### Installation
 
-The `R` package is presently under development and therefore not currently listed on [`CRAN`](https://cran.r-project.org/). For the meantime, please download the `R` package file associated with the [latest release](https://github.com/psych-ds/validator/releases/latest).
-
-In `RStudio`, please then select `Install Packages ...` from the `Tools` menu. Next, please choose `Package Archive File` in the `Install from` dropdown, and select the file you downloaded in the last step. After confirming your selection, the installation should proceed automatically.
-
-Alternatively, you can install the package from the `R` command line with the command `install.packages("~/path/to/download/psychds_x.y.z.tar.gz", repos=NULL, type="source")`.
+The `R` package is presently under development and therefore not currently listed on [`CRAN`](https://cran.r-project.org/). In the meantime, you can install the latest version of the package from the R command line with the commands:
+```
+install.packages(devtools)  # Can be omitted if devtools is already installed
+devtools::install_url(url = "https://github.com/psych-ds/validator-prototype/files/3638496/psychds_0.1.0.tar.gz")
+```
 
 ##### Usage
 

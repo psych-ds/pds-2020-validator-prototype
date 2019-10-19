@@ -21,6 +21,7 @@ Imports:
     V8,
     purrr,
     readr,
+    dplyr,
     cli,
     crayon,
     praise,

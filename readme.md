@@ -51,6 +51,8 @@ The project consists of several different parts that work together.
 
 To build the project, you'll need a local installation of the [`node` JavaScript runtime](https://nodejs.org/) and the [`yarn` package manager](https://yarnpkg.com). With both of these in place, please run the `yarn` command in the project directory to download and install all dependencies (there will be a few warnings about unmet peer dependencies, you can safely ignore these).
 
+NOTE: `yarn v2` does not play nicely with the code; as of March 10 2020 please make sure to install/downgrade to `yarn v1` before attempting build. 
+
 #### Validator core
 
 After setting up the project, the next step is to build the JavaScript validator core by running **`yarn build:core`**.

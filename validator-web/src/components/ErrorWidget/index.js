@@ -50,6 +50,10 @@ const Error = ({ message, severity, details=[] }) =>
                 : <><code>{ d.dataPath }</code>{' '}</>
             }
             { d.message }
+            {
+              d.messageAddon &&
+              <span className="text-muted"> { d.messageAddon }</span>
+            }
           </small>
         )
       }

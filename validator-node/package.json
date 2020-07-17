@@ -10,7 +10,7 @@
     "commander": "^3.0.1",
     "esm": "^3.2.25",
     "glob": "^7.1.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "validator-core": "*"
   }
 }
